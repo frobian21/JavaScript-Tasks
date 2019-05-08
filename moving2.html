@@ -1,0 +1,41 @@
+<html>
+<script>
+	var num = 30;
+	function moving(){
+		var span = window.document.getElementById("hi");
+		span.style.top=window.event.clientY;
+		span.style.left=window.event.clientX;
+
+		if(window.event.altKey){
+			num++;
+		}
+		if(window.event.ctrlKey){
+			num--;
+		}
+		span.style.fontSize = num;
+	}
+	function changeWord(){
+		var span = window.document.getElementById("hi");
+		var word=window.document.getElementById("word").value;
+		span.innerHTML=	word;
+		
+	}
+	function clearText(){
+		window.document.getElementById("word").value="";
+	}
+	function changeColor(){
+		var span = window.document.getElementById("hi");
+		span.style.color = event.target.innerHTML;
+	}
+</script>
+<body onmousemove="moving()" onclick="clearText()">
+	<center><input id="word" onmouseenter="changeWord()"></center>
+<div onmouseover="changeColor()" style="background-color:blue;color:blue;position: absolute; top:20; left:20; width:100;height:100"> blue </div>
+<div onmouseover="changeColor()" style="background-color:red;color:red;position: absolute; top:20; right:20; width:100;height:100"> red </div>
+<div onmouseover="changeColor()" style="background-color:green;color:green;position: absolute; bottom:20; left:20; width:100;height:100"> green </div>
+<div onmouseover="changeColor()" style="background-color:orchid;color:orchid;position: absolute; bottom:20; right:20; width:100;height:100"> orchid </div>
+<span style="position: absolute; top:0; left:0; font-size:30" id="hi">
+	The Shafeeq
+</span>
+</body>
+</html>

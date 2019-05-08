@@ -1,0 +1,79 @@
+<html>
+<script>
+	var num,op="";
+	function addNumber(d){
+		window.document.thisform.result.value+=d;
+	}
+	function operation(e){
+		if(e == '+'||e == '-'||e == '*'||e == '/'){
+			if(e=='-'&&window.document.thisform.result.value=="" && window.document.thisform.result1.value==""){
+				window.document.thisform.result.value = "-";
+			}
+			else if(window.document.thisform.result.value==""){
+				op = e;
+				window.document.thisform.result1.value += e;
+			}else if(window.document.thisform.result.value!=""&&window.document.thisform.result.value!="-"){
+				op = e;
+				num = window.document.thisform.result.value;
+				window.document.thisform.result.value = "";
+				window.document.thisform.result1.value = num+e;
+			}
+		}
+		if(e == 'C'){
+			op = "";
+			window.document.thisform.result.value = "";
+			window.document.thisform.result1.value = "";
+			num ="";
+		}
+		if(e == '='){
+			if(op != ""){
+				if(op == '+'){
+					num = parseFloat(num)+parseFloat(window.document.thisform.result.value);
+				} else if(op == '-'){
+					num = parseFloat(num)-parseFloat(window.document.thisform.result.value);
+				} else if(op == '*'){
+					num = parseFloat(num)*parseFloat(window.document.thisform.result.value);
+				} else if(op == '/'){
+					num = parseFloat(num)/parseFloat(window.document.thisform.result.value);
+				}
+			}else{
+				num = parseFloat(window.document.thisform.result.value);
+			}
+			window.document.thisform.result1.value=num;
+			window.document.thisform.result.value="";
+			op = "";
+		}
+	}
+</script>
+<form name = thisform>
+	<input type = "text" name ="result1" readonly></input>
+	<input type = "text" name ="result" readonly></input>
+<table>
+	<tr>
+		<td><input type="button" value="1" onclick="addNumber('1')"></td>
+		<td><input type="button" value="2" onclick="addNumber('2')"></td>
+		<td><input type="button" value="3" onclick="addNumber('3')"></td>
+		<td><input type="button" value="+" onclick="operation('+')"></td>
+	</tr>
+	<tr>
+		<td><input type="button" value="4" onclick="addNumber('4');"></td>
+		<td><input type="button" value="5" onclick="addNumber('5');"></td>
+		<td><input type="button" value="6" onclick="addNumber('6');"></td>
+		<td><input type="button" value="-" onclick="operation('-')"></td>
+	</tr>
+	<tr>
+		<td><input type="button" value="7" onclick="addNumber('7');"></td>
+		<td><input type="button" value="8" onclick="addNumber('8');"></td>
+		<td><input type="button" value="9" onclick="addNumber('9');"></td>
+		<td><input type="button" value="*" onclick="operation('*')"></td>
+	</tr>
+	<tr>
+		<td><input type="button" value="0" onclick="addNumber('0');"></td>
+		<td><input type="button" value="." onclick="addNumber('.');"></td>
+		<td><input type="button" value="=" onclick="operation('=')"></td>
+		<td><input type="button" value="/" onclick="operation('/')"></td>
+		<td><input type="button" value="C" onclick="operation('C')"></td>
+	</tr>
+</table>
+</form>
+</html>

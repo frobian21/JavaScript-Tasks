@@ -1,0 +1,108 @@
+<html>
+<script>
+	var topofgun=415;
+	var blockLeft=10;
+	var Score=0;
+	var cooldown;
+	var offcooldown=true;
+	blockDo()
+
+	function Move(){
+		//alert(event.keyCode); //left37, up38, right39, down40, space32
+		var left = parseInt(document.getElementById("gun").style.left);
+		if(event.keyCode==39){
+			left+=5;
+		}
+		if(event.keyCode==37){
+			left-=5;
+		}
+		if(left>=380){left=380;}
+		if(left<=10){left=10;}
+		document.getElementById("gun").style.left=left;
+
+		if(offcooldown && event.keyCode==32){
+			offcooldown=false;
+			var projectile = document.createElement("span");
+			document.body.appendChild(projectile);
+
+			var projectileimage = document.createElement("img");
+			projectile.appendChild(projectileimage);
+			projectileimage.src="dogecoin.png";
+			projectileimage.alt="dogecoin";
+			projectileimage.height="30";
+			projectileimage.width="30";
+
+
+			projectile.style="position:absolute; color:red"
+			projectile.style.left=left+18;
+			projectile.style.top=topofgun;
+
+			var cooldown = setInterval(function(){
+				offcooldown=true;
+				clearInterval(cooldown);
+			},400);
+			var timer = setInterval(function(){
+				var projectileLeft=parseInt(projectile.style.left);
+				var projectileTop=parseInt(projectile.style.top);
+				//projectile.offsetLeft;
+				if(projectileTop<=10){
+					if(projectileTop<=10+45 && projectileLeft>=blockLeft-30 && projectileLeft<=blockLeft+50+30){
+						Score+=1;
+						document.getElementById("score").innerHTML="Score: "+Score;
+						projectile.style.visibility="hidden";
+						clearInterval(timer);
+					}
+					projectile.style.visibility="hidden";
+					clearInterval(timer);
+				}
+				else{
+					projectile.style.top=projectileTop-5;
+				}
+			},30);
+		}
+	}
+	function blockDo(){
+		timer2=setInterval(moveBlock,15);
+	}
+	function moveBlock(){
+		blockLeft+=1;
+		if(blockLeft>=430-60){
+			blockLeft=10;
+		}
+		document.getElementById("block").style.left=blockLeft;
+	}
+	// function blockDo(){
+	// 	var blocks = document.createElement("span");
+	// 	blocks.style="left:35; width:48; height:30";
+		
+	// 	var blockimage = document.createElement("img");
+
+	// 	blockimage.src="dogecoin.png";
+	// 	blockimage.alt="dogecoin";
+	// 	blockimage.height="30";
+	// 	blockimage.width="30";
+
+	// 	document.body.appendChild(blocks);
+	// 	block.appendChild(blockimage);
+		
+	// 	var timer=setInterval(function(){
+	// 		blockLeft=parseInt(blocks.style.left);
+	// 		blockLeft+=1;
+	// 		if(blockLeft>=440-50){
+	// 			blockLeft=10;
+	// 		}
+	// 		blocks.style.left=blockLeft;
+	// 	},15);
+	// }
+</script>
+
+<span style="background-color: black; position: absolute; top:10; left:10; width:430;height:500">
+</span>
+<span id="score" style="position: absolute; top:10; left:450">Score: 0</span>
+<body onkeydown="Move()">
+<span id="gun" style="position: absolute; top:400;left: 200;color: green"><br>
+<img src="doge.gif" alt="doge" width="60" height="60"></img>
+</span>
+<span id="block" style="position:absolute; top:10;">
+<img src="nyancat.gif" alt="nyancat" width="72" height="45"></img></span> 
+</body>

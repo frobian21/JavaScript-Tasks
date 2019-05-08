@@ -1,0 +1,40 @@
+<html>
+<script>
+	function itemBarIn(s){
+		s.style.backgroundColor="blue";
+	}
+	function itemBarOut(s){
+		s.style.backgroundColor="white";
+	}
+	function itemBarShow(s){
+		title.innerHTML=s.id;
+	}
+	function setVisible1(s){
+		s.style.visibility="visible";
+	}
+	function setHidden(s){
+		s.style.visibility="hidden";
+	}
+</script>
+<body>
+<div onmouseleave="setHidden(subjectsbar)" style="width:100px;">
+	<span onmouseover="setVisible1(subjectsbar)" style="border: solid black thin;width: 100px"> Subjects </span><br>
+	<span id="subjectsbar" style="visibility:hidden; background-color: white;width: 100px">
+		<span id="Java" onmouseover="itemBarIn(this)" onmouseleave="itemBarOut(this)" onclick="itemBarShow(this)" style="border: solid black thin;width:60px; padding-right: 30">Java</span><br>
+		<span id="Php" onmouseover="itemBarIn(this)" onmouseleave="itemBarOut(this)" onclick="itemBarShow(this)" style="border: solid black thin;width: 60px; padding-right: 34">Php</span><br>
+		<span id="SQL" onmouseover="itemBarIn(this)" onmouseleave="itemBarOut(this)" onclick="itemBarShow(this)" style="border: solid black thin;width: 60px; padding-right: 29">SQL</span><br>
+	</span>
+</div>
+<div onmouseleave="setHidden(sportsbar)" style="position: absolute; top:8; left:67; width:60; height:400;">
+	<span onmouseover="setVisible1(sportsbar)" style="border: solid black thin; width: 60; height:400; padding-right: 10"> Sports </span><br>
+	<span id="sportsbar" style="visibility:hidden; background-color: white; width:60">
+		<span id="Cricket" onmouseover="itemBarIn(this)" onmouseleave="itemBarOut(this)" onclick="itemBarShow(this)" style="border: solid black thin; width: 60px; padding-right: 8">Cricket</span><br>
+		<span id="Football" onmouseover="itemBarIn(this)" onmouseleave="itemBarOut(this)" onclick="itemBarShow(this)" style="border: solid black thin; width: 60px; padding-right: 2">Football</span><br>
+		<span id="Hockey" onmouseover="itemBarIn(this)" onmouseleave="itemBarOut(this)" onclick="itemBarShow(this)" style="border: solid black thin; width: 60px; padding-right: 5">Hockey</span><br>
+	</span>
+</div>
+
+<h1><center><span id="title">
+</span>
+</body>
+</html>
